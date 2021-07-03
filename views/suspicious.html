@@ -1,0 +1,141 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>Reports</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUsers.css">
+        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/users.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			
+	</head>
+	<body>
+		<div class="jumbotron text-center header" style="background-color: rgb(108, 99, 255); position:relative; font-family: 'Inter'; font-weight: 500; color: white;">
+			<h1 class="display-1"><b> Suspicious </b></h1>
+			<button type="button" class="btn" style="background-color:white; position:absolute; top:5px; left:5px; color:black" onclick="backToLogin()"> BACK </button>
+        </div>
+        <div>
+            <form action="/show_suspicious" method="POST">
+                <div class="input-group mb-3" style="margin-left: 40%;">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" placeholder="Username" name="suspicious" style="border: 0.5px solid black;" required>
+                    <button type="submit" class="btn login_btn" style="border: 0.5px solid black; margin-left: 20px;">Search</button>
+                </div>
+                <!-- <div class="d-flex justify-content-center mt-3 login_container">
+                    <button type="submit" class="btn login_btn">Search</button>
+                </div> -->
+            </form>
+        </div>
+
+        <% if (username == ""){ %>
+        <div class="col-4" style="margin-left: 30%; margin-top:40px;">
+            <h2 style="text-align:center; color:#4a4e69; "> Please submit a username </h2>
+        </div>
+
+        <% } else { %>
+
+            <div class="col-4" style="margin-left: 30%; margin-top:40px;">
+                <h2 style="text-align:center; color:#4a4e69; "> User: '<%= username%>' </h2>
+            </div>
+
+            <section class="container mx-auto my-20" id="projects">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                  <div class="projects-card">
+                    <div class="projects-title">
+                      <h2 class="text-shadow">Do you follow this user?</h2>
+                    </div>
+                    <div class="p-2">
+                        <p> <% if (info.you_follow_user) { %> 
+                            YES
+                        <% } else { %>
+                            NO
+                        <% } %> 
+                        </p>
+                    </div>
+                  </div>
+            
+                  <div class="projects-card">
+                    <div class="projects-title">
+                      <h2 class="text-shadow">Does this user follow you?</h2>
+                    </div>
+                    <div class="p-2">
+                        <p> <% if (info.user_follows_you) { %> 
+                            YES
+                        <% } else { %>
+                            NO
+                        <% } %> 
+                        </p>
+                    </div>
+                  </div>   
+                  <div class="projects-card">
+                    <div class="projects-title">
+                      <h2 class="text-shadow">Does this user have you blocked?</h2>
+                    </div>
+                    <div class="p-2">
+                        <p> <% if (info.has_you_blocked) { %> 
+                            YES
+                        <% } else { %>
+                            NO
+                        <% } %> 
+                        </p>
+                    </div>
+                  </div>     
+                </div>
+              </section>
+
+        <!-- <div class="row" style="margin-top: 40px;">
+            <div style="width: 50%;">
+                <div style="margin-left: 25%;">
+                    <p> Username: </p>
+                    <p> <%= username%> </p>
+                </div>
+            </div>
+            <div class="col-4" style="width: 50%;">
+                <div class="likes"> 
+                    <p> Do you follow this user? </p>
+                    <p> <% if (info.you_follow_user) { %> 
+                        YES
+                    <% } else { %>
+                        NO
+                    <% } %> 
+                    </p>
+                </div>
+                <div class="likes"> 
+                    <p> Does this user follow you back? </p>
+                    <p> <% if (info.user_follows_you) { %> 
+                        YES
+                    <% } else { %>
+                        NO
+                    <% } %> 
+                    </p>
+                </div>
+                <div class="likes"> 
+                    <p> Does this user have you blocked? </p>
+                    <p> <% if (info.has_you_blocked) { %> 
+                        YES
+                    <% } else { %>
+                        NO
+                    <% } %> 
+                    </p>
+                </div>
+            </div>
+        </div> -->
+        <% } %>
+        
+        <div id="loader" class="loader" style="visibility: hidden"></div>
+	</body>
+</html>

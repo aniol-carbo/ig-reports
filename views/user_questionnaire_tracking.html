@@ -1,0 +1,166 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>WebApp CVI</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUserQuestionnaire.css">
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/user_questionnaire.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top" style="min-height: 100px">
+			<a class="navbar-brand"><b> <%= data.afNumero%> - <%= data.afNom %> <% if (data.XXEXITUS == 1){ %> <i class='fas fa-times'></i> <% } %> </b></a>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a id="inf_basica"class="nav-link" onclick="function_blocked()" href="user"> Informació bàsica </a>
+				</li>
+				<li class="nav-item">
+					<a id="fotos" class="nav-link" onclick="function_blocked()" href="user_photo"> Fotografies </a>
+				</li>
+				<li class="nav-item">
+					<a id="planols" class="nav-link" onclick="function_blocked()" href="user_flat"> Plànols </a>
+				</li>
+				<li class="nav-item">
+					<a id="gestio" class="nav-link" onclick="function_blocked()" href="user_documentation"> Gestió </a>
+				</li>
+				<li class="nav-item">
+					<a id="questionari" class="nav-link active" onclick="function_blocked()" href="user_questionnaire"><b> Qüestionari </b></a>
+				</li>
+				<li class="nav-item">
+					<a id="inici" class="nav-link" onclick="function_blocked()" href="users"> INICI </a>
+				</li>
+			</ul>
+		</nav>
+		<div id="btn_questionnaire" class="row">
+			<div class="col" align="middle">
+				<div class="dropdown">
+					<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="background-color:#CC0066; margin-bottom:5px; margin-top:5px"> Qüestionaris </button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" onclick="function_blocked()" href="user_questionnaire"> Informe Visita </a>
+						<a class="dropdown-item" onclick="function_blocked()" href="user_questionnaire_tracking"> Seguiment </a>
+						<a class="dropdown-item" onclick="function_blocked()" href="user_questionnaire_imss"> IMSS </a>
+					</div>
+				</div>
+			</div>
+			<div class="col" align="middle">
+				<button type="button" class="btn btn-danger" onclick="function_blocked(); send_data_tracking()" style="background-color:#CC0066; margin-bottom:5px; margin-top:5px"> Guardar </button>
+			</div>
+		</div>
+		<div id="questionnaire" class="border border-light col">
+			<table id="myTable" class='table table-bordered table-condensed table-striped, table-hover'>
+				<thead>
+					<tr>
+						<th hidden> identificador </th>
+						<th>Pregunta</th>
+						<th>Nivell de dificultat</th>
+						<th>Nivell de dificultat (Seguiment)</th>
+						<th>Ajut personal</th>
+						<th>Ajut personal (Seguiment)</th>
+						<th>Ajut Tècnic</th>
+						<th>Element Instal·lat</th>
+					</tr>
+				</thead>
+				<% if(data_preguntes.length){ 
+					for(var i = 0; i < data_preguntes.length;i++) { %>
+						<tbody id="myTable">
+							<tr>
+								<td hidden id="Question<%= i %>"> <%=data_preguntes[i].quId%> </td>
+								<td> <%=data_preguntes[i].quQuestion%> </td>
+								<td>
+									<% if (data_preguntes[i].reReponse1 == 0){ %>
+										<p style="color:#85C1E9"><b> Sense escollir </b></p>
+									<% } else if(data_preguntes[i].reReponse1 == 1){ %>
+										<p style="color:#73C6B6"><b> Cap dificultat </b></p>
+									<% } else if(data_preguntes[i].reReponse1 == 2){ %>
+										<p style="color:#F7DC6F"><b> Poca dificultat </b></p>
+									<% } else if(data_preguntes[i].reReponse1 == 3){ %>
+										<p style="color:#E59866"><b> Força dificultat </b></p>
+									<% } else { %>
+										<p style="color:#F1948A"><b> No pot fer-ho </b></p>
+									<% } %>
+								</td>
+								<td>
+									<form>
+										<% if(data_seguiment[i].reReponse1 == 0){ %> 
+											<select id="Reponse1<%= i %>" class="custom-select" style="background-color:#85C1E9">
+											<option hidden selected value="0"> Sense escollir </option>
+										<% } else if(data_seguiment[i].reReponse1 == 1){ %>
+											<select id="Reponse1<%= i %>" class="custom-select" style="background-color:#73C6B6">
+											<option hidden selected value="1"> Cap dificultat </option>
+										<% } else if(data_seguiment[i].reReponse1 == 2){ %>
+											<select id="Reponse1<%= i %>" class="custom-select" style="background-color:#F7DC6F">
+											<option hidden selected value="2"> Poca dificultat </option>
+										<% } else if(data_seguiment[i].reReponse1 == 3){ %>
+											<select id="Reponse1<%= i %>" class="custom-select" style="background-color:#E59866">
+											<option hidden selected value="3"> Força dificultat </option>
+										<% } else { %>
+											<select id="Reponse1<%= i %>" class="custom-select" style="background-color:#F1948A">
+											<option hidden selected value="4"> No pot fer-ho </option>
+										<% } %>
+											<option value="0" style="background-color:#85C1E9"> Sense escollir </option>
+											<option value="1" style="background-color:#73C6B6"> Cap dificultat </option>
+											<option value="2" style="background-color:#F7DC6F"> Poca dificultat </option>
+											<option value="3" style="background-color:#E59866"> Força dificultat </option>
+											<option value="4" style="background-color:#F1948A"> No pot fer-ho </option>
+										</select>
+									</form>
+								</td>
+								<td>
+									<% if (data_preguntes[i].reReponse2 == 0){ %>
+										<p style="color:#85C1E9"><b> Sense escollir </b></p>
+									<% } else if(data_preguntes[i].reReponse2 == 1){ %>
+										<p style="color:#73C6B6"><b> No cal ajut </b></p>
+									<% } else if(data_preguntes[i].reReponse2 == 2){ %>
+										<p style="color:#E59866"><b> L'ajuda algú </b></p>
+									<% } else { %>
+										<p style="color:#F1948A"><b> Ningú l'ajuda </b></p>
+									<% } %>
+								</td>
+								<td>
+									<form>
+										<form>
+										<% if(data_seguiment[i].reReponse2 == 0){ %> 
+											<select id="Reponse2<%= i %>" class="custom-select" style="background-color:#85C1E9">
+											<option hidden selected value="0"> Sense escollir </option>
+										<% } else if(data_seguiment[i].reReponse2 == 1){ %>
+											<select id="Reponse2<%= i %>" class="custom-select" style="background-color:#73C6B6">
+											<option hidden selected value="1"> No cal ajut </option>
+										<% } else if(data_seguiment[i].reReponse2 == 2){ %>
+											<select id="Reponse2<%= i %>" class="custom-select" style="background-color:#E59866">
+											<option hidden selected value="2"> L'ajuda algú </option>
+										<% } else { %>
+											<select id="Reponse2<%= i %>" class="custom-select" style="background-color:#F1948A">
+											<option hidden selected value="3"> Ningú l'ajuda </option>
+										<% } %>
+											<option value="0" style="background-color:#85C1E9"> Sense escollir </option>
+											<option value="1" style="background-color:#73C6B6"> No cal ajut </option>
+											<option value="2" style="background-color:#E59866"> L'ajuda algú </option>
+											<option value="3" style="background-color:#F1948A"> Ningú l'ajuda </option>
+										</select>
+									</form>
+								</td>
+								<td> <%= data_preguntes[i].reReponse3%> </td>
+								<td> 
+									<input type="text" class="form-control" id="Reponse3<%= i %>" value="<%= data_seguiment[i].reReponse3%>"> </input>
+								</td>
+							</tr>
+						</tbody>
+					<% }
+				} %>
+			</table>
+		</div>
+		<div id="loader" class="loader" style="visibility: hidden"></div>
+	</body>
+</html>

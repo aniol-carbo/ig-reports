@@ -1,0 +1,92 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>WebApp CVI</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUsers.css">
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/users.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			
+	</head>
+	<body>
+		<div class="jumbotron text-center" style="position:relative">
+			<h1 class="display-1"><b> Projectes </b></h1>
+			<button type="button" class="btn" style="background-color:transparent; position:absolute; top:5px; right:5px; color:gray" onclick="backToLogin()"> SORTIR </button>
+		</div>
+		<div id="users" class="container-fluid">
+			<span class="border border-light">
+				<input type="text" class="form-control form-control-lg" id="myInput" onkeyup="filterUser()" placeholder="Buscar..." title="Escriu per buscar">
+			</span>
+			<span class="border border-light">
+				<table id="myTable" class='table table-bordered table-condensed table-striped, table-hover'>
+					<thead>
+						<tr>
+							<th>Programa</th>
+							<th>Número</th>
+							<th>Nom</th>
+							<th>Adreça</th>
+							<th>DNI</th>
+						</tr>
+					</thead>
+					<% if(data.length){ 
+						for(var i = 0;i < data.length;i++) { %>
+						<tbody id="myTable">
+							<tr class="clickable" onclick="function_blocked(); select_user_and_year('<%=data[i].afNumero%>', '<%=data[i].year%>')"
+								<% if (data[i].XXEXITUS == 1) {%>
+									bgcolor="#ff3030"
+								<% } %>
+
+								<% if (data[i].XXVINCUL == 1) {%>
+									bgcolor="#486cfa"
+								<% } %>
+
+								<% if (data[i].XXTIPUS == 'MANTENIMENT') {%>
+									bgcolor="#fc9cff"
+								<% } %>
+
+								<% if (data[i].XXSSANIT == 1) {%>
+									bgcolor="#9c5762"
+								<% } %>
+							>
+								<td><%=data[i].year%></td>
+								<td><%=data[i].afNumero%> 
+									<% if (data[i].XXEXITUS == 1) {%>
+										<span>[EXITUS]</span>
+										<% } %>
+										<% if (data[i].XXVINCUL == 1) {%>
+											<span>[VINCULAT]</span>
+										<% } %>
+		
+										<% if (data[i].XXTIPUS == 'MANTENIMENT') {%>
+											<span>[MANTENIMENT]</span>
+										<% } %>
+		
+										<% if (data[i].XXSSANIT == 1) {%>
+											<span>[SOCIOSANITARI]</span>
+										<% } %>
+								</td>
+								<td><%=data[i].afNom%></td>
+								<td><%=data[i].afFactAdr1%></td>
+								<td><%=data[i].clCIF%></td>
+							</tr>
+						</tbody>
+					<% }
+					} %>
+				</table>
+			</span>
+		</div>
+		<div id="loader" class="loader" style="visibility: hidden"></div>
+	</body>
+</html>

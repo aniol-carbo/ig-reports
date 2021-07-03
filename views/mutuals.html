@@ -1,0 +1,92 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>Reports</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUsers.css">
+        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/users.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			
+	</head>
+	<body>
+		<div class="jumbotron text-center header" style="background-color: rgb(108, 99, 255); position:relative; font-family: 'Inter'; font-weight: 500; color: white;">
+			<h1 class="display-1"><b> Mutuals </b></h1>
+			<button type="button" class="btn" style="background-color:white; position:absolute; top:5px; left:5px; color:black" onclick="backToLogin()"> BACK </button>
+    </div>
+            <section class="container mx-auto my-20" id="projects">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+                  <div class="projects-card">
+                    <div class="projects-title">
+                      <h2 class="text-shadow">Total users that you follow each other</h2>
+                    </div>
+                    <div class="p-2">
+                        <p> <%= info.mutuals.total_mutuals%> </p>
+                    </div>
+                  </div>
+            
+                  <div class="projects-card">
+                    <div class="projects-title">
+                      <h2 class="text-shadow">Total non-mutuals</h2>
+                    </div>
+                    <div class="p-2">
+                        <p> <%= info.non_mutuals.total_non_mutuals%> </p>
+                    </div>
+                  </div>       
+                </div>
+              </section>
+
+            <section class="container mx-auto my-20" id="projects2">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                  <div class="projects-card">
+                    <div class="projects-title">
+                      <h2 class="text-shadow">You don't follow back</h2>
+                    </div>
+                    <div class="p-2">
+                        <p> <%= info.non_mutuals.total_you_dont_follow_back%> </p>
+                    </div>
+                    <div class="projects-btn-group">
+                        <button class="btn btn-danger btn-block btn-lg" onclick="show_list( '<%= info.non_mutuals.you_dont_follow_back %>')" style="color: white; border: 0px; font-weight: 500; background-color: rgb(108, 99, 255); width: 100%;"> Show </button>
+                    </div>
+                  </div>
+            
+                  <div class="projects-card">
+                    <div class="projects-title">
+                      <h2 class="text-shadow">They don't follow you back</h2>
+                    </div>
+                    <div class="p-2">
+                        <p> <%= info.non_mutuals.total_they_dont_follow_you%> </p>
+                    </div>
+                    <div class="projects-btn-group">
+                        <button class="btn btn-danger btn-block btn-lg" onclick="show_list( '<%= info.non_mutuals.they_dont_follow_you %>')" style="color: white; border: 0px; font-weight: 500; background-color: rgb(108, 99, 255); width: 100%;"> Show </button>
+                    </div>
+                  </div>
+            
+                  <div class="projects-card">
+                    <div class="projects-title">
+                      <h2 class="text-shadow">Verified users that follow you</h2>
+                    </div>
+                    <div class="p-2">
+                        <p> <%= info.verifieds.total_verifieds_following_you%> </p>
+                    </div>
+                    <div class="projects-btn-group">
+                        <button class="btn btn-danger btn-block btn-lg" onclick="show_list( '<%= info.verifieds.verifieds_following_you %>')" style="color: white; border: 0px; font-weight: 500; background-color: rgb(108, 99, 255); width: 100%;"> Show </button>
+                    </div>
+                  </div>
+              </section>
+
+        <div id="loader" class="loader" style="visibility: hidden"></div>
+	</body>
+</html>

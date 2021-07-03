@@ -1,0 +1,49 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>Reports</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUsers.css">
+        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/users.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			
+	</head>
+	<body>
+		<div class="jumbotron text-center header" style="background-color: rgb(108, 99, 255); position:relative; font-family: 'Inter'; font-weight: 500; color: white;">
+			<h1 class="display-1"><b> Followers </b></h1>
+			<button type="button" class="btn" style="background-color:white; position:absolute; top:5px; left:5px; color:black" onclick="backToLogin()"> BACK </button>
+        </div>
+
+        <div class="row" style="position:relative; font-family: 'Didact Gothic'; margin-top:2%">
+            <div class="squares col-sm">
+                <div class="col-sm"> 
+                    <table style="font-size: 40px; text-align: center; width: 100%;">
+                        <% if(info.length){ 
+                            for(var i = 0;i < info.length;i++) { %>
+                            <tbody id="myTable">
+                                <tr style="height: 70px;">
+                                    <td><%=info[i]%></td>
+                                </tr>
+                            </tbody>
+                        <% }
+                        } %>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="loader" class="loader" style="visibility: hidden"></div>
+	</body>
+</html>

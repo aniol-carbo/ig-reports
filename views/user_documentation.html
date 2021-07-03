@@ -1,0 +1,155 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>WebApp CVI</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUsersDocumentation.css">
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/user_documentation.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top" style="min-height: 100px">
+			<a class="navbar-brand"><b> <%= data.afNumero %> - <%= data.afNom %> <% if (data.XXEXITUS == 1){ %> <i class='fas fa-times'></i> <% } %> </b></a>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a id="inf_basica" class="nav-link" onclick="function_blocked()" href="user"> Informació bàsica </a>
+				</li>
+				<li class="nav-item">
+					<a id="fotos" class="nav-link" onclick="function_blocked()" href="user_photo"> Fotografies </a>
+				</li>
+				<li class="nav-item">
+					<a id="planols" class="nav-link" onclick="function_blocked()" href="user_flat"> Plànols </a>
+				</li>
+				<li class="nav-item">
+					<a id="gestio" class="nav-link active" onclick="function_blocked()" href="user_documentation"><b> Gestió </b></a>
+				</li>
+				<li class="nav-item">
+					<a id="questionari" class="nav-link" onclick="function_blocked()" href="user_questionnaire"> Qüestionari </a>
+				</li>
+				<li class="nav-item"> 
+					<a id="inici" class="nav-link" onclick="function_blocked()" href="users"> INICI </a>
+				</li>
+			</ul>
+		</nav>
+		<div id="documentation" class="border border-light col">
+			<table id="myTable" class='table table-bordered table-condensed table-striped, table-hover'>
+				<thead>
+					<tr>
+						<th>Tipus</th>
+						<th>Identificador</th>
+						<th>Responsable</th>
+						<th>Imprès</th>
+						<th>Enviat</th>
+					</tr>
+				</thead>
+				<!-- INTERVENCIONS -->
+				<% if(data_intervention.length){
+					for(var i = 0; i < data_intervention.length; i++){
+						if (((i >= 1) && (data_intervention[i].inNumero != data_intervention[i-1].inNumero)) || (i == 0)){ %>
+						<tbody id="myTable">
+							<tr class="clickable" onclick="function_blocked(); select_intervention('<%= data_intervention[i].inNumero%> ')">
+								<td> Intervenció </td>
+								<td>
+									NI<%for(var j= data_intervention[i].inNumero.length; j < 5;j++){%>0<%}%><%=data_intervention[i].inNumero%>
+								</td>
+								<td>
+								<!-- Evitar repeticions en Intervencions -->
+								<% var first_constructor = true;
+								var first_treballador = true;
+								for (var j = 0; j < data_intervention.length; j++){
+									if ((data_intervention[j].saNom != null) && (data_intervention[i].inNumero == data_intervention[j].inNumero)){ 
+										if (first_treballador){ %>
+											<b> Treballadors: </b>
+											<%= data_intervention[j].saNom%>
+											<% first_treballador = false;
+										} else { %>
+											- <%= data_intervention[j].saNom%>
+										<% }
+									} 
+									if (data_intervention[j].mlLibelle != null && (data_intervention[i].inNumero == data_intervention[j].inNumero)){ 
+											if (first_constructor){ %>
+												<b> Constructors: </b>
+												<%= data_intervention[j].mlLibelle%>
+												<% first_constructor = false;
+											}
+										} 
+								} %>
+								</td>
+								<td> </td>
+								<td> </td>
+							</tr>
+						</tbody>
+					<% }
+					}
+				} %>
+				<!-- PRESSUPOSTOS -->
+				<% if(data_budget.length){ 
+					for(var i = 0; i < data_budget.length;i++) { %>
+						<tbody id="myTable">
+							<tr class="clickable" onclick="function_blocked(); select_budget('<%=data_budget[i].veNumero%>')">
+								<td> Pressupost </td>
+								<td> <%=data_budget[i].veNumero%> </td>
+								<td>  </td>
+								<td> <%=data_budget[i].daPrintDate%> </td>
+								<td> <%=data_budget[i].daEmailDate%> </td>
+							</tr>
+						</tbody>
+					<% }
+				} %>
+				<!-- COMANDES -->
+				<% if(data_order.length){ 
+					for(var i = 0; i < data_order.length;i++) { %>
+						<tbody id="myTable">
+							<tr class="clickable" onclick="function_blocked(); select_order('<%=data_order[i].aeNumero%>')">
+								<td> Comanda </td>
+								<td> <%=data_order[i].aeNumero%> </td>
+								<td> <%=data_order[i].foNom%> </td>
+								<td> <%=data_order[i].daPrintDate%> </td>
+								<td> <%=data_order[i].daEmailDate%> </td>
+							</tr>
+						</tbody>
+					<% }
+				} %>
+				<!-- FACTURES -->
+				<% if(data_invoice.length){ 
+					for(var i = 0; i < data_invoice.length;i++) { %>
+						<tbody id="myTable">
+							<tr class="clickable" onclick="function_blocked(); select_invoice('<%=data_invoice[i].veNumero%>')">
+								<td> Factura </td>
+								<td> <%=data_invoice[i].veNumero%> </td>
+								<td>  </td>
+								<td> <%=data_invoice[i].daPrintDate%> </td>
+								<td> <%=data_invoice[i].daEmailDate%> </td>
+							</tr>
+						</tbody>
+					<% }
+				} %>
+				<!-- INFORME FINAL -->
+				<% if(final_report){ %>
+					<tbody id="myTable">
+						<tr class="clickable" onclick="function_blocked(); select_final_report('<%=data.afNumero%>')">
+							<td> Informe Final</td>
+							<td> IF<%=(data.afNumero).substr(2)%> <td>
+							<td> <td>
+							<td> <td>
+				<% } %>
+			</table>
+		</div>
+		<div id="final_report" class="col">
+			<button type="button" class="btn btn-danger" onclick="generate_final_report(final_report)" style="background-color:#CC0066; margin-top:5px" align="center"> Generar Informe Final </button>
+		</div>
+		<div id="loader" class="loader" style="visibility: hidden"></div>
+	</body>
+</html>

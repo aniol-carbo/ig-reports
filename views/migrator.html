@@ -1,0 +1,50 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>WebApp CVI</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUsers.css">
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/user_documentation.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			
+	</head>
+	<body>
+        <nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top" style="min-height: 100px">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a id="inici" class="nav-link" onclick="function_blocked()" href="main"> INICI </a>
+				</li>
+			</ul>
+		</nav>
+		<div id="titol" class="row">
+			<div class="col text-center" style="font-size:150%; padding-left: 10%">
+				<h1> Migrador </h1>
+			</div>
+		</div>
+        <div id="btn_foto">
+            <div class="col file-upload-wrapper text-center" style="padding: 20px">
+                <form action="/upload_pdf" method="post" enctype="multipart/form-data">
+                    <input type="file" name="myFile" accept=".pdf"/>
+                    <input class="btn btn-danger" type="submit" onclick="function_blocked()" value="Penjar PDF" style="background-color:#CC0066"/>
+                </form>
+            </div>
+        </div>
+		<div id="final_report" class="col">
+			<button type="button" class="btn btn-danger" onclick="generate_migration()" style="background-color:#CC0066; margin-top:5px" align="center"> Iniciar Migració </button>
+		</div>
+		<div id="loader" class="loader" style="visibility: hidden"></div>
+    </body>
+</html>
+    

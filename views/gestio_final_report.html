@@ -1,0 +1,281 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>WebApp CVI</title>
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/user_documentation.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top" style="min-height: 100px">
+			<a class="navbar-brand"><b> <%= data.afNumero%> - <%= data.afNom %> <% if (data.XXEXITUS == 1){ %> <i class='fas fa-times'></i> <% } %> </b></a>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="user"> Informació bàsica </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="user_photo"> Fotografies </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="user_flat"> Plànols </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="user_documentation"><b> Gestió </b></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="user_questionnaire"> Qüestionari </a>
+				</li>
+				<li class="nav-item"> 
+					<a class="nav-link" href="users"> INICI </a>
+				</li>
+			</ul>
+		</nav>
+		<div class="row">
+			<div class="col">
+				<img src="images/imss_middle.jpg" class="responsive" style="height:200px; widht:200px; object-fit:contain">
+			</div>
+			<div class="col" align="middle">
+				<img src="images/cvi_middle.png" class="responsive" style="height:100px; widht:100px; object-fit:contain">
+			</div>
+		</div>
+		<div>
+			<h2 align="center"> PROGRAMA D’ADAPTACIÓ FUNCIONAL DE LA LLAR PER A PERSONES GRANS AMB DEPENDÈNCIA I/O DISCAPACITADES </h2>
+		</div>
+		<hr style="border:3px solid">
+		<h2 align="middle" style="color:#CC0066"><b> INFORME D’INTERVENCIÓ </b></h2>
+		<h3 style="color:#CC0066"> Dades Personals </h3>
+		<p><b> Núm. Expedient: </b> <%= data_personal.XXEXPAJ %> <br>
+		<b> Núm. Projecte: </b> <%= data.afNumero %> <br>
+		<b> NIF: </b> <%= data_personal.clCIF %> <br>
+		<b> Nom i Cognoms: </b> <%= data_personal.clNom %> <br>
+		<b> Adreça de la Intervenció: </b> <%= data_personal.clFactAdr1 %> <br>
+		<% if (data_personal.XXGNDEP){ %>
+			Té reconegut el grau i nivell de dependència. <br>
+		<% } %>
+		<% if (data_personal.XXGNDEPI){ %>
+			Té reconegut el grau de discapacitat. <br>
+		<% } %>
+		<% if (data_personal.XXCONVIV){ %>
+			La persona usuària viu 
+			<% if (data_personal.XXCONVIV == 1) { %> 
+				sola. <br>
+			<% } else if (data_personal.XXCONVIV == 2){ %>
+				amb persona dependent. <br>
+			<% } else { %>
+				acompanyada d’altres. <br>
+			<% } %>
+		<% } %>
+		</p>
+		<h3 style="color:#CC0066"> Descripció de la Intervenció </h3>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Partida d'obres" || data_productes[i].sfId.startsWith("P") || data_productes[i].sfId.startsWith("X")){ 
+					if (first){ %>
+						<h4 style="color:#CC0066"> Arranjaments </h4>
+						<% first = false; 
+					}
+				}
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Partida d'obres" || data_productes[i].sfId == "P2" || data_productes[i].sfId == "P3" || data_productes[i].sfId == "X.1" || data_productes[i].sfId == "X.2" || data_productes[i].sfId == "X.3" || data_productes[i].sfId == "X.4" || data_productes[i].sfId == "X.6" || data_productes[i].sfId == "X.7" || data_productes[i].sfId == "X.8" || data_productes[i].sfId == "X.9"){
+					if (first){ %>
+						<b> Bany </b><br>
+						Per poder realitzar les activitats d’higiene, s’ha realitzat:
+						<% first = false; 
+					}
+				}
+			}
+		} %>
+		<% if(data_productes.length){ 
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Partida d'obres" || data_productes[i].sfId == "P2" || data_productes[i].sfId == "P3" || data_productes[i].sfId == "X.1" || data_productes[i].sfId == "X.2" || data_productes[i].sfId == "X.3" || data_productes[i].sfId == "X.4" || data_productes[i].sfId == "X.6" || data_productes[i].sfId == "X.7" || data_productes[i].sfId == "X.8" || data_productes[i].sfId == "X.9"){ %>
+					<li> <%=data_productes[i].elLib%> </li>
+				<% }
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfId == "X.13" || data_productes[i].sfId == "X.15" || data_productes[i].sfId == "X.17"){
+					if (first){ %>
+						<b> Cuina i General </b><br>
+						Per poder realitzar les activitats dins de la llar, s’ha realitzat:
+						<% first = false; 
+					}
+				}
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfId == "X.13" || data_productes[i].sfId == "X.15" || data_productes[i].sfId == "X.17"){ %>
+					<li> <%=data_productes[i].elLib%> </li>
+				<% }
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Dutxa" || data_productes[i].sfDesc == "Banyera" || data_productes[i].sfDesc == "Wàter" || data_productes[i].sfDesc == "Higiene" || data_productes[i].sfDesc == "Lavabo" || data_productes[i].sfDesc == "Cuina, ús general" || data_productes[i].sfDesc == "Menjar" || data_productes[i].sfDesc == "Vestir" || data_productes[i].sfDesc == "Mobilitat" || data_productes[i].sfDesc == "Transferències"){ 
+					if (first){ %>
+						<h4 style="color:#CC0066"> Productes de suport </h4>
+						<% first = false; 
+					}
+				}
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Dutxa" || data_productes[i].sfDesc == "Banyera" || data_productes[i].sfDesc == "Wàter" || data_productes[i].sfDesc == "Higiene"){ 
+					if (first){ %>
+						<b> Bany </b><br>
+						<% first = false; 
+					}
+				}
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Dutxa" || data_productes[i].sfDesc == "Banyera" || data_productes[i].sfDesc == "Wàter"){ 
+					if (first){ %>
+						La persona usuària té dificultats a l’hora de realitzar les activitats a la cambra de bany, per aquest motiu se li prescriu:
+						<% first = false; 
+					} %>
+					<li> <%=data_productes[i].elLib%> </li>
+				<% }
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Higiene"){ 
+					if (first){ %>
+						Per realitzar la higiene personal necessita:
+						<% first = false; 
+					} %>
+					<li> <%=data_productes[i].elLib%> </li>
+				<% }
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Cuina, ús general"){ 
+					if (first){ %>
+						<b> Cuina </b><br>
+						La persona usuària per poder realitzar les activitats de la cuina necessita:
+						<% first = false; 
+					}
+				}
+			}
+		} %>
+		<% if(data_productes.length){ 
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Cuina, ús general"){ %>
+					<li> <%=data_productes[i].elLib%> </li>
+				<% }
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Menjar"){ 
+					if (first){ %>
+						<b> Menjar </b><br>
+						Per poder realitzar l’activitat de menjar, s’ha prescrit:
+						<% first = false; 
+					}
+				}
+			}
+		} %>
+		<% if(data_productes.length){
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Menjar"){ %>
+					<li> <%=data_productes[i].elLib%> </li>
+				<% }
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Vestir"){ 
+					if (first){ %>
+						<b> Vestir </b><br>
+						Perquè pugui realitzar les activitats de vestir, s’ha prescrit:
+						<% first = false; 
+					}
+				}
+			}
+		} %>
+		<% if(data_productes.length){ 
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Vestir"){ %>
+					<li> <%=data_productes[i].elLib%> </li>
+				<% }
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Mobilitat" || data_productes[i].sfDesc == "Transferències"){ 
+					if (first){ %>
+						<b> Mobilitat i Transferències </b><br>
+						<% first = false; 
+					}
+				}
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Mobilitat"){ 
+					if (first){ %>
+						Donades les dificultats que presenta la persona usuària en la mobilitat, és necessari:
+						<% first = false; 
+					} %>
+					<li> <%=data_productes[i].elLib%> </li>
+				<% }
+			}
+		} %>
+		<% if(data_productes.length){ 
+			var first = true;
+			for(var i = 0; i < data_productes.length;i++) { 
+				if (data_productes[i].sfDesc == "Transferències"){ 
+					if (first){ %>
+						A l’hora de realitzar les transferències és necessari:
+						<% first = false; 
+					} %>
+					<li> <%=data_productes[i].elLib%> </li>
+				<% }
+			}
+		} %>
+		<h3 style="color:#CC0066"> Fotografies Inicials </h3>
+		<% if(inicials.length){ 
+			for(var i = 0;i < inicials.length;i++) { %>
+				<img src= "images/<%= user %>/photos/<%= inicials[i] %>" id="foto_inicial" class="rounded zoom" width="200" height="200" style="margin-bottom:5px" onmousedown="popup_option(event, 'foto_inicial', '<%= inicials[i] %>')">
+			<% }
+		} %>
+		<h3 style="color:#CC0066"> Fotografies Finals </h3>
+		<% if(finals.length){ 
+			for(var i = 0;i < finals.length;i++) { %>
+				<img src= "images/<%= user %>/photos/<%= finals[i] %>" id="foto_final" class="rounded zoom" width="200" height="200" style="margin-bottom:5px" onmousedown="popup_option(event, 'foto_final', '<%= finals[i] %>')">
+			<% }
+		} %>
+	</body>
+</html>

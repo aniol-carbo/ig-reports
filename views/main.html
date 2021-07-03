@@ -1,0 +1,129 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>Reports</title>
+		
+		<!-- CSS Style Sheets -->
+		<link rel="stylesheet" href="css/stylesUsers.css">
+		<link href='https://fonts.googleapis.com/css?family=Didact Gothic' rel='stylesheet'>
+		<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+		
+		<!-- Images -->
+        <link rel="shortcut icon" href="images/favicon.ico">
+		
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/main.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		
+	</head>
+	<body>
+		<!-- <div class="jumbotron text-center" style="background-image: url('images/abstract.jpg');background-position: center; background-repeat: no-repeat; position:relative; font-family: 'Didact Gothic'; color: aliceblue;">
+			<h1 class="display-1"><b> Reports </b></h1>
+		</div> -->
+
+		<nav class="navbar navbar-expand-md tm-navbar" id="tmNav">              
+			<div class="container">   
+			  <div class="tm-next">
+				  <a class="navbar-brand" style="color: black; font-size:25px">Reports</a>
+			  </div>             
+				
+			  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<i class="fas fa-bars navbar-toggler-icon"></i>
+			  </button> -->
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+				<ul class="navbar-nav ml-auto">
+				  <li class="nav-item">
+					<form action="/show_media_info" method="POST" >
+						<button class="btn btn-danger btn-block btn-lg" onclick="function_blocked()" style="font-size: 17px; color: black; border: 0px; background-color: transparent; margin-top: 10px;">Media info</button>
+					</form>
+				  </li>
+				  <li class="nav-item">
+					<form action="/show_suspicious" method="POST">
+						<button class="btn btn-danger btn-block btn-lg" onclick="function_blocked()" style="font-size: 17px; color: black; border: 0px; background-color: transparent; margin-top: 10px;">Suspicious</button>
+					</form>				  </li>
+				  <li class="nav-item">
+					<form action="/show_mutuals" method="POST">
+						<button class="btn btn-danger btn-block btn-lg" onclick="function_blocked()" style="font-size: 17px; color: black; border: 0px; background-color: transparent; margin-top: 10px;">Mutuals</button>
+					</form>				  
+					</li>                    
+				</ul>
+			  </div>        
+			</div>
+		  </nav>
+
+		  <div class="curved-div">
+			<div class="text-column" style="padding-top: 120px;">
+				<h1 style="font-family:'Inter'; font-weight:800;">Reports</h1>
+				<h2 style="color: white; font-weight: 600; padding-top: 40px; font-size: 40px;">The ultimate tool to keep track of your Instagram page</h2>
+			</div>
+			<!-- <svg viewBox="0 0 1440 319"> -->
+			<svg viewBox="0 120 1440 140">
+				<path fill="#fff" fill-opacity="1" d="M0,128L120,149.3C240,171,480,213,720,213.3C960,213,1200,171,1320,149.3L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+			</svg>
+		  </div>  
+		  
+			<!-- <div class="row banner">
+				<div class="text-column" style="padding-top: 120px;">
+					<h2 style="color: white; font-weight: 600; padding-left: 120px; font-size: 40px;">The ultimate tool to keep track of your Instagram page</h2>
+					<h3 style="color: white; padding-left: 120px; padding-top: 20px;"> Review all the stats from your posts, check information about other users, and more.</h3>
+				</div>
+				<div class="photo-column">
+					<img style="width: 250px; height: 250px; margin-top: 70px; margin-left: 70px;" src="images/ig.png" alt="Logo">
+				</div>
+			</div> -->
+			
+			<div style="text-align: center; padding-top: 100px;">
+				<h3 style="color: black;"> Review all the stats from your posts, check information about other users, and more.</h3>
+			</div>
+			<section class="container mx-auto my-20" id="projects" style="margin-top:100px">
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+					<div class="projects-card">
+						<div class="projects-title">
+							<img style="width: 250px; height: 250px; margin-top: 70px; margin-left: 30px;" src="images/media_info.svg" alt="Logo">
+						</div>
+						<div>
+							<form action="/show_media_info" method="POST">
+								<button class="btn btn-danger btn-block btn-lg" onclick="function_blocked()" style="color: white; font-weight: bold; background-color: rgb(108, 99, 255); border: white; margin-top: 20px;"> Media Info </button>
+							</form>
+						</div>
+					  </div>
+
+					  <div class="projects-card">
+						<div class="projects-title">
+							<img style="width: 250px; height: 250px; margin-top: 70px; margin-left: 30px;" src="images/mutuals.svg" alt="Logo">
+						</div>
+						<div>
+							<form action="/show_mutuals" method="POST">
+								<button class="btn btn-danger btn-block btn-lg" onclick="function_blocked()" style="color: white; font-weight: bold; background-color: rgb(108, 99, 255); border: white; margin-top: 20px;"> Mutuals </button>
+							</form>
+						</div>
+					  </div> 
+			
+				  <div class="projects-card">
+                    <div class="projects-title">
+						<img style="width: 250px; height: 250px; margin-top: 70px; margin-left: 30px;" src="images/suspicious.svg" alt="Logo">
+                    </div>
+                    <div>
+						<form action="/show_suspicious" method="POST">
+							<button class="btn btn-danger btn-block btn-lg" onclick="function_blocked()" style="color: white; font-weight: bold; background-color: rgb(108, 99, 255); border: white; margin-top: 20px;"> Suspicious </button>
+						</form>
+                    </div>
+                  </div>
+				</div>
+			  </section>
+
+
+
+			<div class="form-group" style="position: absolute; right: 40px; bottom: 10px;">
+					<form action="/log_out" method="POST">
+						<button class="btn btn-primary btn-md" onclick="function_blocked()" style="background-color:#0092cc"> LOG OUT </button>
+					</form>
+			</div>
+		<div id="loader" class="loader" style="visibility: hidden"></div>
+	</body>
+</html>

@@ -1,0 +1,235 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>Reports</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUsers.css">
+        <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Didact Gothic' rel='stylesheet'>
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+        <script type="text/javascript" src="javascript/users.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			
+	</head>
+	<body>
+		<div class="jumbotron text-center header" style="background-color: rgb(108, 99, 255); position:relative; font-family: 'Inter'; font-weight: 500; color: white;">
+			<h1 class="display-1"><b> Media Info </b></h1>
+			<button type="button" class="btn" style="background-color:white; position:absolute; top:5px; left:5px; color:black" onclick="backToLogin()"> BACK </button>
+        </div>
+
+        <div>
+            <h3 style="text-align: center; margin-bottom: 30px;">
+               Showing stats of your last <%= info.posts%> posts
+            </h3>
+        </div>
+
+        <div>
+            <form action="/show_media_info" method="POST">
+                <div class="input-group mb-3" style="margin-left: 42%;">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-camera"></i></span>
+                    </div>
+                    <input type="text" placeholder="Number of posts" style="border: 0.5px solid black;" name="totalmedia" required>
+                    <button type="submit" class="btn login_btn" style="border: 0.5px solid black; margin-left: 20px;">Submit</button>
+                </div>
+                <!-- <div class="d-flex justify-content-center mt-3 login_container">
+                    <button type="submit" class="btn login_btn">Search</button>
+                </div> -->
+            </form>
+        </div>
+
+        <section class="container mx-auto my-20" id="projects">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+              <div class="projects-card">
+                <div class="projects-title">
+                  <h2 class="text-shadow">Total photos</h2>
+                </div>
+                <div class="p-2">
+                    <p> <%= info.total_photos%>%> </p>
+                </div>
+              </div>
+        
+              <div class="projects-card">
+                <div class="projects-title">
+                  <h2 class="text-shadow">Total videos</h2>
+                </div>
+                <div class="p-2">
+                    <p> <%= info.total_videos%>%> </p>
+                </div>
+              </div>       
+            </div>
+          </section>
+
+        <!-- <div class="row" style="position:relative; font-family: 'Didact Gothic'; margin-top:2%">
+            <div class="squares col-sm" style="margin-left: 50px; margin-right: 25px; border: solid black 1px; border-radius: 15px;">
+                <div class="col-sm" style="margin-left: 30%;"> 
+                    <p> Total photos </p>
+                    <p style="margin-left: 30px;"> <%= info.total_photos%> </p>
+                </div>
+            </div>
+            <div class="squares col-sm" style="margin-left: 25px; margin-right: 50px; border: solid black 1px; border-radius: 15px;">
+                <div class="col-sm" style="margin-left: 30%;"> 
+                    <p> Total videos </p>
+                    <p style="margin-left: 30px;"> <%= info.total_videos%> </p>
+                </div>
+            </div>
+        </div> -->
+
+        <section class="container mx-auto my-20" id="projects">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+              <div class="projects-card">
+                <div class="projects-title">
+                  <h2 class="text-shadow">Total likes</h2>
+                </div>
+                <div class="p-2">
+                    <p> <%= info.total_likes%>%> </p>
+                </div>
+              </div>
+        
+              <div class="projects-card">
+                <div class="projects-title">
+                  <h2 class="text-shadow">Total photo likes</h2>
+                </div>
+                <div class="p-2">
+                    <p> <%= info.total_photo_likes%>%> </p>
+                </div>
+              </div>
+              
+              <div class="projects-card">
+                <div class="projects-title">
+                  <h2 class="text-shadow">Total video likes</h2>
+                </div>
+                <div class="p-2">
+                    <p> <%= info.total_video_likes%>%> </p>
+                </div>
+              </div> 
+
+              <div class="projects-card">
+                <div class="projects-title">
+                  <h2 class="text-shadow">Total video views</h2>
+                </div>
+                <div class="p-2">
+                    <p> <%= info.total_video_views%>%> </p>
+                </div>
+              </div> 
+            </div>
+          </section>
+
+        <!-- <div class="row" style="position:relative; font-family: 'Didact Gothic'; margin-top:2%">
+            <div class="squares col-sm" style="margin-left: 20px; border: solid black 1px; border-radius: 15px;">
+                <div class="col-sm" style="margin-left: 30%;"> 
+                    <p> Total likes </p>
+                    <p style="margin-left: 30px;"> <%= info.total_likes%> </p>
+                </div>
+            </div>
+            <div class="squares col-sm" style="margin-left: 20px; border: solid black 1px; border-radius: 15px;">
+                <div class="col-sm" style="margin-left: 30%;"> 
+                    <p> Total photo likes </p>
+                    <p style="margin-left: 30px;"> <%= info.total_photo_likes%> </p>
+                </div>
+            </div>
+            <div class="squares col-sm" style="margin-left: 20px;  margin-right: 30px; border: solid black 1px; border-radius: 15px;">
+                <div class="col-sm" style="margin-left: 30%;"> 
+                    <p> Total video likes </p>
+                    <p style="margin-left: 30px;"> <%= info.total_video_likes%> </p>
+                </div>
+            </div>
+            <div class="squares col-sm" style="margin-left: 20px; border: solid black 1px; border-radius: 15px;">
+                <div class="col-sm" style="margin-left: 30%;"> 
+                    <p> Total video views </p>
+                    <p style="margin-left: 30px;"> <%= info.total_video_views%> </p>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row" style="position:relative; font-family: 'Didact Gothic'; margin-top:2%">
+            <div class="squares col-sm">
+                <h3 style="text-align: center;"> Average stats from your media </h2>
+                <div style="margin-left:25%;">
+                    <canvas id="myChart" width="1200" height="400"></canvas>
+                </div> 
+                <script>
+                    var ctx = document.getElementById("myChart");
+                    var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Likes per post", "Likes per photo", "Likes per video", "Comments per post", "Comments per photo", "Comments per video", "Views per video"],
+                        datasets: [{
+                        label: 'Average media info',
+                        data: ['<%= info.average_likes_per_post%>', '<%= info.average_likes_per_photo%>', '<%= info.average_likes_per_video%>','<%= info.average_comments_per_post%>', '<%= info.average_comments_per_photo%>', '<%= info.average_comments_per_video%>','<%= info.average_views_per_video%>'],
+                        backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255,99,132,1)',
+                        ],
+                        borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            display: false
+                        },
+                        responsive: false,
+                        scales: {
+                        xAxes: [{
+                            ticks: {
+                            maxRotation: 0,
+                            minRotation: 0
+                            },
+                            gridLines: {
+                            offsetGridLines: true // à rajouter
+                            }
+                        },
+                        {
+                            position: "",
+                            ticks: {
+                            maxRotation: 90,
+                            minRotation: 80
+                            },
+                            gridLines: {
+                            offsetGridLines: true // et matcher pareil ici
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                            beginAtZero: true
+                            }
+                        }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+               
+        </div>
+
+        
+        <div id="loader" class="loader" style="visibility: hidden"></div>
+	</body>
+</html>

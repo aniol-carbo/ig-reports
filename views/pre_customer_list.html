@@ -1,0 +1,61 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>WebApp CVI</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUsers.css">
+		
+		<!-- Images -->
+        <link rel="shortcut icon" href="images/favicon.ico">
+
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/customer.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+			
+	</head>
+	<body>
+		<div class="jumbotron text-center" style="position:relative">
+			<h1 class="display-1"><b> Clients de <%= any %> </b></h1>
+			<button type="button" class="btn" style="background-color:transparent; position:absolute; top:5px; right:5px; color:gray" onclick="backToLogin()"> SORTIR </button>
+		</div>
+		<div id="customer">
+			<div class="row container-fluid">
+				<div class="col" align="center">
+					<div class="dropdown">
+						<select id="myDropdownClient" class="btn btn-danger dropdown-toogle" style="background-color:#CC0066">
+							<option value='1'> Usuaris Pendents </option>
+							<option value='2'> Usuaris Desestimats </option>
+							<option value='3'> Actuacions </option>
+							<option value='4'> Anul·lacions </option>
+						</select>
+					</div>
+				</div>
+				<div class="col" align="center">
+					<div class="dropdown">
+						<select id="myDropdownDistrict" class="btn btn-danger dropdown-toogle" style="background-color:#CC0066">
+							<% if(data_district.length){ %>
+								<option value='tots'> Tots els districtes </option>
+								<% for(var i = 0;i < data_district.length;i++) { %>
+									<option value='<%=data_district[i].XXDSTE%>'> <%=data_district[i].XXDSTE%> </option>
+								<% }
+							} %>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col" align="center">
+				<button type="button" class="btn btn-danger" onclick="advancedSearch()" style="background-color:#CC0066"> Buscar </button>
+			</div>
+		</div>
+		<div id="loader" class="loader" style="visibility: hidden"></div>
+
+		
+
+	</body>
+</html>

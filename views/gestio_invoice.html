@@ -1,0 +1,80 @@
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>WebApp CVI</title>
+		
+		<!-- CSS Style Sheets -->
+        <link rel="stylesheet" href="css/stylesUsersDocumentation.css">
+		
+		<!-- Images -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="shortcut icon" href="images/favicon.ico">
+	
+		<!--Javascript -->
+		<script type="text/javascript" src="javascript/user_documentation.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top" style="min-height: 100px">
+			<a class="navbar-brand"><b> <%= data.afNumero%> - <%= data.afNom %> <% if (data.XXEXITUS == 1){ %> <i class='fas fa-times'></i> <% } %> </b></a>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="user"> Informació bàsica </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="user_photo"> Fotografies </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="user_flat"> Plànols </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="user_documentation"><b> Gestió </b></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="user_questionnaire"> Qüestionari </a>
+				</li>
+				<li class="nav-item"> 
+					<a class="nav-link" href="users"> INICI </a>
+				</li>
+			</ul>
+		</nav>
+		<div id="documentation" class="text-center">
+			<button type="button" class="btn btn-danger btn-large" data-toggle="collapse" data-target="#filtratge" style="background-color:#CC0066; align:center; margin: 5px"> Configuració correu </button>
+			<span id="filtratge" class="collapse border border-light">
+				<div class="row">
+					<div class="col" align="center">
+						<input id="receiver" type="text" class="form-control" style="margin: 5px" placeholder="Destinatari..."> </input>
+					</div>
+					<div class="col" align="center">
+						<div class="dropdown">
+							<select id="myDropdown" class="btn btn-danger dropdown-toogle" style="background-color:#CC0066">
+									<% if(correus.length){
+										for(var i = 0;i < correus.length;i++) { %>
+											<option value='<%=correus[i].foFactMail%>'> <%=correus[i].foFactMail%> </option>
+										<% }
+									} %>
+							</select>
+							<button type="button" class="btn btn-danger" onclick="add_mail()" style="background-color:#CC0066; margin: 5px"> Afegir </button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="text" id="subject" class="form-control" style="margin: 5px" placeholder="Assumpte..."> </input>
+					<input type="text" id="text" class="form-control" style="margin: 5px" placeholder="Text..."> </input>
+				</div>
+				<div class="row" align="center">
+					<div class="col" align="center">
+						<button type="button" class="btn btn-danger" onclick="send_mail_invoice()" style="background-color:#CC0066; margin: 5px"> ENVIAR </button>
+					</div>
+				</div>
+			</span>
+			<iframe src= "images/<%= user %>/Documents/<%= factura %>" id="planell" class="rounded zoom" width="100%" height="100%">
+		</div>
+		<div id="loader" class="loader" style="visibility: hidden"></div>
+	</body>
+</html>
